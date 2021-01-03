@@ -34,6 +34,7 @@
 
 <script>
 import Ticket from "./components/Ticket";
+import { nanoid } from 'nanoid'
 
 export default {
   name: "App",
@@ -47,13 +48,13 @@ export default {
       eventPrice: "20",
       tickets: [
         {
-          id: "ankgeehuge"
+          id: nanoid()
         },
         {
-          id: "nfghkgeegb"
+          id: nanoid()
         },
         {
-          id: "sfbhjegebui"
+          id: nanoid()
         },
         {
           id: "wihurgbhgef"
