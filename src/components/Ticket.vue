@@ -6,7 +6,7 @@
         <p class="ticket-info">{{ event.organiser }}</p>
       </div>
       <div>
-        <span class="ticket-price">${{ event.price }}</span>
+        <span class="ticket-price">£{{ event.price }}</span>
         <span>&nbsp;/-</span>
       </div>
     </div>

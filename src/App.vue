@@ -34,7 +34,9 @@
 
 <script>
 import Ticket from "./components/Ticket";
-import { nanoid } from 'nanoid'
+import { customAlphabet } from 'nanoid'
+
+const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 6)
 
 export default {
   name: "App",
@@ -48,16 +50,16 @@ export default {
       eventPrice: "20",
       tickets: [
         {
-          id: "dtk-" + nanoid(6)
+          id: "DTK-" + nanoid()
         },
         {
-          id: "dtk-" + nanoid(6)
+          id: "DTK-" + nanoid()
         },
         {
-          id: "dtk-" + nanoid(6)
+          id: "DTK-" + nanoid()
         },
         {
-          id: "dtk-wihurgbhge"
+          id: "DTK-" + nanoid()
         }
       ]
     };
