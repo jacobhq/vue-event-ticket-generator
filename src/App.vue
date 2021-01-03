@@ -48,16 +48,16 @@ export default {
       eventPrice: "20",
       tickets: [
         {
-          id: nanoid()
+          id: "dtk-" + nanoid(6)
         },
         {
-          id: nanoid()
+          id: "dtk-" + nanoid(6)
         },
         {
-          id: nanoid()
+          id: "dtk-" + nanoid(6)
         },
         {
-          id: "wihurgbhgef"
+          id: "dtk-wihurgbhge"
         }
       ]
     };
