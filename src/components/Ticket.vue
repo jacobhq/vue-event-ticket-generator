@@ -7,12 +7,18 @@
       </div>
       <div>
         <span class="ticket-price">£{{ event.price }}</span>
-        <span>&nbsp;/-</span>
+        <span>&nbsp;</span>
       </div>
     </div>
     <div class="ticket-column-2">
       <div class="ticket-qr">
-        <qrcode-vue :value="ticket.id" size="100" level="H"></qrcode-vue>
+        <qrcode-vue
+          :value="ticket.id"
+          background="#0b3954"
+          foreground="#20fc8f"
+          size="100"
+          level="H"
+        ></qrcode-vue>
       </div>
       <p class="ticket-code">ID: {{ ticket.id }}</p>
     </div>
@@ -26,17 +32,17 @@ export default {
   name: "Ticket",
   props: {
     event: Object,
-    ticket: Object
+    ticket: Object,
   },
   components: {
-    QrcodeVue
-  }
+    QrcodeVue,
+  },
 };
 </script>
 
 <style scoped>
 .ticket {
-  background-color: hsl(243.3, 12.5%, 28.2%);
+  background-color: #0b3954;
   color: #fff;
   padding: 15px 20px;
   border-radius: 4px;
@@ -54,7 +60,7 @@ export default {
 .ticket-heading {
   margin: 0;
   font-size: 20px;
-  color: hsl(180, 32.3%, 62.9%);
+  color: #20fc8f;
 }
 
 .ticket-info {

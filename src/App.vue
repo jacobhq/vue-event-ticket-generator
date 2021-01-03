@@ -4,28 +4,31 @@
       <form class="tickets-form">
         <label>
           <span>Enter Event Name</span>
-          <input v-model="eventName" placeholder="Eg: Vue.js Workshop">
+          <input v-model="eventName" placeholder="Eg: Vue.js Workshop" />
         </label>
         <label>
           <span>Enter Event Organiser</span>
-          <input v-model="eventOrganizer" placeholder="Eg: Mozilla Bbsr">
+          <input v-model="eventOrganizer" placeholder="Eg: Mozilla Bbsr" />
         </label>
         <label>
           <span>Enter Event Price</span>
-          <input v-model="eventPrice" placeholder="Eg: 20">
+          <input v-model="eventPrice" placeholder="Eg: 20" />
         </label>
       </form>
       <div>
-        <p>Fill the event details in the form.
-          <br>If you like the generated tickets then click on Print button
+        <p>
+          Fill the event details in the form. <br />If you like the generated
+          tickets then click on Print button
         </p>
         <button v-on:click="generateTickets">Print Tickets</button>
+        <button v-on:click="addTicket">Add ticket</button>
+        <button v-on:click="rmTicket">Delete ticket</button>
       </div>
     </div>
     <ul class="tickets-list">
       <li v-for="ticket in tickets" :key="ticket.id">
         <div class="ticket-wrapper">
-          <Ticket :event="event" :ticket="ticket"/>
+          <Ticket :event="event" :ticket="ticket" />
         </div>
       </li>
     </ul>
@@ -34,34 +37,25 @@
 
 <script>
 import Ticket from "./components/Ticket";
-import { customAlphabet } from 'nanoid'
+import { customAlphabet } from "nanoid";
 
-const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 6)
+const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 
 export default {
   name: "App",
   components: {
-    Ticket
+    Ticket,
   },
   data() {
     return {
-      eventName: "Vue.js Workshop",
-      eventOrganizer: "Mozilla BBSR",
+      eventName: "JacobHQ",
+      eventOrganizer: "Desica",
       eventPrice: "20",
       tickets: [
         {
-          id: "DTK-" + nanoid()
+          id: "DTK-" + nanoid(),
         },
-        {
-          id: "DTK-" + nanoid()
-        },
-        {
-          id: "DTK-" + nanoid()
-        },
-        {
-          id: "DTK-" + nanoid()
-        }
-      ]
+      ],
     };
   },
   computed: {
@@ -69,17 +63,23 @@ export default {
       const event = {
         name: this.eventName,
         organiser: this.eventOrganizer,
-        price: this.eventPrice
+        price: this.eventPrice,
       };
 
       return event;
-    }
+    },
   },
   methods: {
     generateTickets() {
       window.print();
-    }
-  }
+    },
+    addTicket() {
+      this.tickets.push({ id: "DTK-" + nanoid() });
+    },
+    rmTicket() {
+      this.tickets.splice(1, 1);
+    },
+  },
 };
 </script>
 
