@@ -7,6 +7,7 @@
           tickets then click on Print button
         </p>
         <button v-on:click="generateTickets">Print Tickets</button>
+        <a href="/go">Login</a>
       </div>
     </div>
     <ul class="tickets-list">
@@ -60,7 +61,7 @@ export default {
     },
     fetchUser() {
       axios
-        .get("https://api.jacobhq.xyz/")
+        .redirect("https://api.jacobhq.xyz/")
         .then(function (response) {
           // handle success
           console.log(response);
