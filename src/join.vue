@@ -1,29 +1,12 @@
 <template>
   <div id="app">
     <div class="tickets-control no-print">
-      <form class="tickets-form">
-        <label>
-          <span>Enter Event Name</span>
-          <input v-model="eventName" placeholder="Eg: Vue.js Workshop" />
-        </label>
-        <label>
-          <span>Enter Event Organiser</span>
-          <input v-model="eventOrganizer" placeholder="Eg: Mozilla Bbsr" />
-        </label>
-        <label>
-          <span>Enter Event Price</span>
-          <input v-model="eventPrice" placeholder="Eg: 20" />
-        </label>
-      </form>
       <div>
         <p>
           Fill the event details in the form. <br />If you like the generated
-          tickets then click on Print button, or you can
-          <a href="/join">Join</a>
+          tickets then click on Print button
         </p>
         <button v-on:click="generateTickets">Print Tickets</button>
-        <button v-on:click="addTicket">Add ticket</button>
-        <button v-on:click="rmTicket">Delete ticket</button>
       </div>
     </div>
     <ul class="tickets-list">
@@ -39,6 +22,7 @@
 <script>
 import Ticket from "./components/Ticket";
 import { customAlphabet } from "nanoid";
+import axios from "axios";
 
 const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 
@@ -74,11 +58,17 @@ export default {
     generateTickets() {
       window.print();
     },
-    addTicket() {
-      this.tickets.push({ id: "DTK-" + nanoid() });
-    },
-    rmTicket() {
-      this.tickets.splice(1, 1);
+    fetchUser() {
+      axios
+        .get("https://api.jacobhq.xyz/")
+        .then(function (response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
     },
   },
 };
