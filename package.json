@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@vue/cli": "^4.5.9",
+    "@vue/cli": "^4.5.10",
     "axios": "0.21.1",
-    "core-js": "^3.6.4",
+    "core-js": "^3.8.2",
     "jaffacake": "^0.3.0",
     "nanoid": "^3.1.20",
     "qrcode.vue": "^1.7.0",
@@ -20,16 +20,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "@vue/cli-plugin-babel": "^4.3.0",
-    "@vue/cli-plugin-eslint": "^4.3.0",
-    "@vue/cli-service": "^4.3.0",
-    "autoprefixer": "^9.8.6",
+    "@vue/cli-plugin-babel": "^4.5.10",
+    "@vue/cli-plugin-eslint": "^4.5.10",
+    "@vue/cli-service": "^4.5.10",
+    "autoprefixer": "^10.2.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "postcss": "^7.0.35",
+    "eslint-plugin-vue": "^7.4.1",
+    "postcss": "^8.2.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
