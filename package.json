@@ -11,10 +11,12 @@
     "@vue/cli": "^4.5.9",
     "axios": "0.21.1",
     "core-js": "^3.6.4",
+    "jaffacake": "^0.3.0",
     "nanoid": "^3.1.20",
     "qrcode.vue": "^1.7.0",
     "v-validate": "^0.1.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "jj-parallax-card": "1.0.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",

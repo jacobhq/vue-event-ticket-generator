@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="onboarding" v-show="onboarding">
-      <section v-show="one">
+    <div class="onboarding no-print" v-show="onboarding">
+      <section class="no-print" v-show="one">
         <div class="wrapper">
           <p class="tagline">👋 Hello and</p>
           <h1 class="welcome">Welcome</h1>
@@ -10,33 +10,58 @@
           </div>
         </div>
       </section>
-      <section v-show="two">
+      <section class="no-print" v-show="two">
         <div class="wrapper">
           <p class="tagline">🎫 About your</p>
           <h1 class="welcome">Event</h1>
-          <form class="tickets-form onboard-form">
-            <input v-model="eventName" placeholder="Enter Event Name" v-validate="{required: true, maxLength: 11}" />
-            <input v-model="eventOrganizer" placeholder="Enter Event Organiser" />
-            <input v-model="eventPrice" placeholder="Enter Event Price" />
+          <form class="tickets-form onboard-form" v-on:submit.prevent="preview">
+            <input v-model="eventName" placeholder="Enter Event Name" v-validate="{required: true, maxLength: 11}" required />
+            <input v-model="eventOrganizer" placeholder="Enter Event Organiser" required />
+            <input v-model="eventPrice" placeholder="Enter Event Price" type="number" required />
+            <div class="cta">
+              <button type="submit">Make tickets</button>
+            </div>
           </form>
-          <div class="cta">
-            <button v-on:click="finish">Make tickets</button>
-          </div>
         </div>
       </section>
-      <section v-show="three">
-        <div class="wrapper">
-          <p class="tagline">✨ Look at your shiny new</p>
-          <h1 class="welcome">Ticket</h1>
-          <ul class="tickets-list center">
+      <section class="no-print" v-show="three">
+        <div class="wrapper no-print">
+          <p class="tagline no-print">✨ Look at your shiny new</p>
+          <h1 class="welcome no-print">Ticket</h1>
+          <ul class="tickets-list center no-print">
             <li v-for="ticket in tickets" :key="ticket.id">
               <div class="ticket-wrapper">
-                <Ticket :event="event" :ticket="ticket" style="box-shadow: black 0px 0px 5px;" />
+                <Ticket :event="event" :ticket="ticket" />
               </div>
             </li>
           </ul>
-          <div class="cta">
-            <button v-on:click="next">Begin</button>
+          <form class="tickets-form onboard-form" v-on:submit.prevent="finish(proc_num)">
+              <input v-model="number" placeholder="How many tickets?" type="number" style="margin-left: 5px; margin-right: 5px;" required />
+              <div class="cta">
+                <button v-on:click="back" class="back">Back</button>
+                <button type="submit">Finish</button>
+              </div>
+            </form>
+        </div>
+      </section>
+      <section v-show="four">
+        <div class="wrapper">
+          <p class="tagline">🥳 And finally...</p>
+          <h1 class="welcome">Quantity</h1>
+          <div>
+            <ul class="tickets-list center">
+              <li v-for="ticket in tickets" :key="ticket.id">
+                <div class="ticket-wrapper">
+                  <Ticket :event="event" :ticket="ticket" />
+                </div>
+              </li>
+            </ul>
+            <form class="tickets-form onboard-form" v-on:submit.prevent="generateTickets">
+              <input v-model="eventPrice" placeholder="How many tickets?" type="number" required />
+              <div class="cta">
+                <button type="submit">Begin</button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
@@ -93,6 +118,8 @@
         one: true,
         two: false,
         three: false,
+        number: null,
+        proc_num: this.number - 1,
         eventName: null,
         eventOrganizer: null,
         eventPrice: null,
@@ -134,15 +161,30 @@
         this.one = false,
         this.two = true
       },
-      finish() {
+      preview() {
         this.two = false,
         this.three = true
+      },
+      back() {
+        this.three = false,
+        this.two = true
+      },
+      addToArray(i) {
+        this.tickets.push(i, {
+          id: "DTK-" + nanoid()
+          }
+        );
+      },
+      finish(i) {
+        this.addToArray(i)
+        this.generateTickets()
       }
     },
   };
 </script>
+
 <style>
-  body,
+    body,
   ul,
   p,
   h1,
@@ -189,7 +231,8 @@
       background-color: white;
     }
     .no-print,
-    .no-print * {
+    .no-print *,
+    :not(.print) {
       display: none !important;
     }
   }
@@ -290,4 +333,24 @@ button:focus {
   align-items: center;
   justify-content: center
 }
+@media only screen and (max-width: 900px) {
+  .welcome {
+    font-size: 6rem;
+  }
+  .tagline {
+    font-size: 1.5rem;
+  }
+}
+
+.wrapper .ticket-wrapper {
+  margin: 5px;
+  border-radius: 4px;
+  border: 2px rgba(128, 128, 128, 0.384) dashed;
+}
+
+.back {
+  background-color: #0b3954;
+  color: #20fc8f;
+}
+
 </style>
