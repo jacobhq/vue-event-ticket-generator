@@ -29,7 +29,7 @@
           <p class="tagline no-print">✨ Look at your shiny new</p>
           <h1 class="welcome no-print">Ticket</h1>
           <ul class="tickets-list center no-print">
-            <li>
+            <li v-for="ticket in tickets" :key="ticket.id">
               <div class="ticket-wrapper">
                 <Ticket :event="event" :ticket="ticket" />
               </div>
@@ -44,52 +44,8 @@
             </form>
         </div>
       </section>
-      <section v-show="four">
-        <div class="wrapper">
-          <p class="tagline">🥳 And finally...</p>
-          <h1 class="welcome">Quantity</h1>
-          <div>
-            <ul class="tickets-list center">
-              <li v-for="ticket in tickets" :key="ticket.id">
-                <div class="ticket-wrapper">
-                  <Ticket :event="event" :ticket="ticket" />
-                </div>
-              </li>
-            </ul>
-            <form class="tickets-form onboard-form" v-on:submit.prevent="generateTickets">
-              <input v-model="eventPrice" placeholder="How many tickets?" type="number" required />
-              <div class="cta">
-                <button type="submit">Begin</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
     </div>
     <div>
-      <div class="tickets-control no-print">
-        <form class="tickets-form">
-          <label>Enter Event Name</label>
-          <input v-model="eventName" placeholder="Eg: Vue.js Workshop" v-validate="{required: true, maxLength: 11}" />
-          <label>Enter Event Organiser</label>
-          <input v-model="eventOrganizer" placeholder="Eg: Mozilla Bbsr" />
-          <label>Enter Event Price</label>
-          <input v-model="eventPrice" placeholder="Eg: 20" />
-        </form>
-        <div>
-          <p>
-            Fill the event details in the form. 
-            <br />If you like the generated
-            tickets then click on Print button.
-          </p>
-          <button v-on:click="generateTickets">Print Tickets
-          </button>
-          <button v-on:click="addTicket">Add ticket
-          </button>
-          <button v-on:click="rmTicket">Delete ticket
-          </button>
-        </div>
-      </div>
       <ul class="tickets-list">
         <li v-for="ticket in tickets" :key="ticket.id">
           <div class="ticket-wrapper">
@@ -177,7 +133,9 @@
       },
       finish(i) {
         this.addToArray(i)
+        this.onboarding = false
         this.generateTickets()
+        this.onboarding = true
       }
     },
   };
