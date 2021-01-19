@@ -29,7 +29,7 @@
           <p class="tagline no-print">✨ Look at your shiny new</p>
           <h1 class="welcome no-print">Ticket</h1>
           <ul class="tickets-list center no-print">
-            <li :key="ticket.id">
+            <li>
               <div class="ticket-wrapper">
                 <Ticket :event="event" :ticket="ticket" />
               </div>
