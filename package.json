@@ -10,7 +10,7 @@
   "dependencies": {
     "@vue/cli": "^4.5.12",
     "axios": "0.21.1",
-    "core-js": "^3.11.2",
+    "core-js": "^3.12.1",
     "jaffacake": "^0.3.0",
     "nanoid": "^3.1.23",
     "qrcode.vue": "^1.7.0",
